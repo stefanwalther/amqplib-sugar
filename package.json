@@ -1,0 +1,41 @@
+{
+  "name": "amqplib-sugar",
+  "version": "0.1.0",
+  "description": "Sugar methods for amqplib",
+  "main": "./src/index.js",
+  "repository": "git@github.com:sammler/amqplib-sugar.git",
+  "author": "Stefan Walther",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.13.0",
+    "eslint-config-xo-space": "^0.15.0",
+    "gulp-format-md": "^0.1.11"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.1"
+  },
+  "scripts": {
+    "docs": "verb"
+  },
+  "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "empty",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": []
+    },
+    "lint": {
+      "reflinks": true
+    },
+    "reflinks": [
+      "verb",
+      "verb-readme-generator"
+    ]
+  }
+}

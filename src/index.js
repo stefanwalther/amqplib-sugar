@@ -1,0 +1,2 @@
+const amqplib = require('amqplib');
+
