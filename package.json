@@ -1,21 +1,31 @@
 {
   "name": "amqplib-sugar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sugar methods for amqplib",
+  "license": "MIT",
+  "author": "Stefan Walther",
   "main": "./src/index.js",
   "repository": "git@github.com:sammler/amqplib-sugar.git",
-  "author": "Stefan Walther",
-  "license": "MIT",
+  "scripts": {
+    "docs": "verb",
+    "lint:src": "eslint src",
+    "lint:src:fix": "eslint src --fix"
+  },
+  "files": [
+    "index.js",
+    "src"
+  ],
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "eslint-config-sammler": "sammler/eslint-config-sammler",
+    "sammler-nodelib-logger": "sammler/sammler-nodelib-logger"
+  },
   "devDependencies": {
-    "eslint": "^3.13.0",
-    "eslint-config-xo-space": "^0.15.0",
+    "eslint": "^3.14.1",
     "gulp-format-md": "^0.1.11"
   },
-  "dependencies": {
-    "amqplib": "^0.5.1"
-  },
-  "scripts": {
-    "docs": "verb"
+  "engines": {
+    "node": ">=6.0.0"
   },
   "verb": {
     "run": true,
@@ -37,5 +47,8 @@
       "verb",
       "verb-readme-generator"
     ]
+  },
+  "winster": {
+    "configFile": "./src/config/winster-config.js"
   }
 }
