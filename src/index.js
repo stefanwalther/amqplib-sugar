@@ -1,4 +1,5 @@
-const amqplib = require('amqplib');
+const amqp = require('amqplib');
+const logger = require('winster').instance();
 
 class AmqplibSugar {
 
@@ -29,7 +30,6 @@ class AmqplibSugar {
           });
       });
   }
-
 }
 
 module.exports = AmqplibSugar;
