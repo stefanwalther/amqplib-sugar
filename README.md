@@ -1,5 +1,7 @@
 ## amqplib-sugar
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sammler/amqplib-sugar.svg)](https://greenkeeper.io/)
+
 > Sugar methods for amqplib
 
 ## Author
