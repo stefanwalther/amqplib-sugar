@@ -4,7 +4,7 @@
   "description": "Sugar methods for amqplib",
   "license": "MIT",
   "author": "Stefan Walther",
-  "main": "./src/index.js",
+  "main": "index.js",
   "repository": "git@github.com:stefanwalther/amqplib-sugar.git",
   "scripts": {
     "docs": "docker run --rm -v ${PWD}:/opt/verb stefanwalther/verb",

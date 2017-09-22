@@ -2,6 +2,13 @@
 
 > Sugar methods for amqplib
 
+---
+
+> This is work in progress, just some sugar functions on top of amqplib I use in some of my projects.
+> That's it, stay tuned ...
+
+---
+
 ## Author
 **Stefan Walther**
 
