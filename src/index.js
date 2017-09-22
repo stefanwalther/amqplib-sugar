@@ -1,8 +1,37 @@
 const amqp = require('amqplib');
 const logger = require('winster').instance();
+// Todo: Need to be removed from scheduler-service as soon as migrated to amqplib-sugar
+const promiseRetry = require('promise-retry');
 
-class AmqplibSugar {
+function encode(doc) {
+  return new Buffer(JSON.stringify(doc));
+}
 
+class AmqpSugarLib {
+
+  /**
+   * RabbitMQ Server definition.
+   *
+   * @typedef {string} rabbitConnectionDef - Connection string of the server.
+   *
+   *
+   *
+   */
+
+  /**
+   * Retry behavior in case RabbitMQ is not available.
+   *
+   * @typedef {object} retryBehavior
+   *
+   * @property {number} retries - The maximum amount of times to retry the operation. Defaults to 10.
+   *
+   * @property {boolean} enabled - Whether retry is enabled at all or not (defaults to true); setting to false is equal to keeping {@link retryBehavior} empty.
+   * @property {number} interval - Interval in ms.
+   * @property {number} times - Amount of times the given operation should be retried.
+   * @readonly
+   * @property {number} attempts - Readonly, current amount of attempts.
+   *
+   */
 
   /**
    * Post a message to RabbitMq.
@@ -13,23 +42,53 @@ class AmqplibSugar {
    * @param {string} opts.exchange.name - Name of the exchange.
    * @param {string} opts.key - Key to publish the message.
    * @param {object} opts.message - The message to post.
+   * @param {retryBehavior} opts.retry_behavior - Retry behavior.
    */
   static publishMessage(opts) {
-    return amqp.connect(opts.server)
+    return AmqpSugarLib.connect(opts)
       .then(conn => {
         conn.createChannel()
           .then(ch => {
             ch.assertExchange(opts.exchange.name, opts.exchange.type, {durable: true});
             ch.publish(opts.exchange.name, opts.key, encode(opts.message));
-            logger.debug(" [x] Sent %s:'%s'", opts.key, JSON.stringify(opts.message, null)); // eslint-disable-line quotes
+            logger.verbose(` [x] Sent ${opts.key}: ${JSON.stringify(opts.message, null)}`);
+
+            // Todo: Not clear, why we need a setTimeout here ...
             setTimeout(() => {
               conn.close();
-              logger.debug('publishMessage: Connection closed');
-
+              logger.verbose('publishMessage: Connection closed');
             }, 500);
           });
       });
   }
+
+  /**
+   * Connect to RabbitMQ.
+   *
+   * @param {rabbitConnectionDef} opts.server - Connection information for the server.
+   * @param {retryBehavior} opts.retry_behavior - Retry behavior for establishing the connection.
+   *
+   * @return {Promise} - Returns the promise as defined for amqplib.connect
+   *
+   * @description Very similar to amqp.connect, but with the big difference, that if the connection
+   * fails, the operation will retry as defined in opts.retry_behavior
+   */
+  static connect(opts) {
+
+    return promiseRetry((retry, number) => {
+
+      opts.retry_behavior.attempts = number;
+      if (number >= 2) {
+        logger.verbose(`Trying to (re)connect to RabbitMq, attempt number ${number}`);
+      }
+
+      return amqp.connect(opts.server)
+        .catch(retry);
+
+    });
+
+  }
+
 }
 
-module.exports = AmqplibSugar;
+module.exports = AmqpSugarLib;
