@@ -1,6 +1,6 @@
 {
   "name": "amqplib-sugar",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Sugar methods for amqplib",
   "license": "MIT",
   "author": "Stefan Walther",
@@ -12,7 +12,9 @@
     "lint:src": "eslint src",
     "lint:src:fix": "eslint src --fix",
     "lint:test": "eslint test",
-    "lint:test:fix": "eslint test --fix"
+    "lint:test:fix": "eslint test --fix",
+    "test": "npm run test:unit",
+    "test:unit": "npm run lint:test && mocha './test/unit/**/*.spec.js' --require './test/mocha.conf.js'"
   },
   "dependencies": {
     "amqplib": "^0.5.1",
@@ -20,8 +22,10 @@
     "sammler-nodelib-logger": "sammler/sammler-nodelib-logger"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "eslint": "^4.7.2",
-    "eslint-config-space-single": "^0.2.0"
+    "eslint-config-space-single": "^0.2.0",
+    "mocha": "^3.5.3"
   },
   "engines": {
     "node": ">=8.4.0"

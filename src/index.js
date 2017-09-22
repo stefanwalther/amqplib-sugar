@@ -63,6 +63,15 @@ class AmqpSugarLib {
   }
 
   /**
+   * Subscribe to a message.
+   *
+   * @param opts
+   */
+  static subscribeMessage(opts) {
+
+  }
+
+  /**
    * Connect to RabbitMQ.
    *
    * @param {rabbitConnectionDef} opts.server - Connection information for the server.
@@ -79,14 +88,13 @@ class AmqpSugarLib {
 
       opts.retry_behavior.attempts = number;
       if (number >= 2) {
-        logger.verbose(`Trying to (re)connect to RabbitMq, attempt number ${number}`);
+        logger.verbose(`Trying to (re)connect to RabbitMq, attempt number ${number-1}`);
       }
 
       return amqp.connect(opts.server)
         .catch(retry);
 
     });
-
   }
 
 }
