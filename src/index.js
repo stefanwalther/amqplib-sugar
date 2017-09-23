@@ -7,15 +7,15 @@ function encode(doc) {
   return new Buffer(JSON.stringify(doc));
 }
 
+/**
+ * Sugar methods to work with amqplib.
+ */
 class AmqpSugarLib {
 
   /**
    * RabbitMQ Server definition.
    *
    * @typedef {string} rabbitConnectionDef - Connection string of the server.
-   *
-   *
-   *
    */
 
   /**
@@ -30,11 +30,11 @@ class AmqpSugarLib {
    * @property {number} times - Amount of times the given operation should be retried.
    * @readonly
    * @property {number} attempts - Readonly, current amount of attempts.
-   *
    */
 
   /**
    * Post a message to RabbitMq.
+   *
    * @param {object} opts - Configuration to use to publish a message.
    * @param {object} opts.server - RabbitMQ server. If a string is passed, it's just the URI.
    * @param {object} opts.exchange - Information about the exchange.
@@ -43,6 +43,8 @@ class AmqpSugarLib {
    * @param {string} opts.key - Key to publish the message.
    * @param {object} opts.message - The message to post.
    * @param {retryBehavior} opts.retry_behavior - Retry behavior.
+   *
+   * @returns {Promise}
    */
   static publishMessage(opts) {
     return AmqpSugarLib.connect(opts)
@@ -74,13 +76,13 @@ class AmqpSugarLib {
   /**
    * Connect to RabbitMQ.
    *
+   * Very similar to amqp.connect, but with the big difference, that if the connection
+   * fails, the operation will retry as defined in opts.retry_behavior
+   *
    * @param {rabbitConnectionDef} opts.server - Connection information for the server.
    * @param {retryBehavior} opts.retry_behavior - Retry behavior for establishing the connection.
    *
    * @return {Promise} - Returns the promise as defined for amqplib.connect
-   *
-   * @description Very similar to amqp.connect, but with the big difference, that if the connection
-   * fails, the operation will retry as defined in opts.retry_behavior
    */
   static connect(opts) {
 
@@ -96,7 +98,6 @@ class AmqpSugarLib {
 
     });
   }
-
 }
 
 module.exports = AmqpSugarLib;

@@ -8,6 +8,8 @@
   "repository": "git@github.com:stefanwalther/amqplib-sugar.git",
   "scripts": {
     "docs": "docker run --rm -v ${PWD}:/opt/verb stefanwalther/verb",
+    "api-docs2": "./node_modules/jsdoc-to-markdown/bin/cli.js src/index.js --heading-depth 1 --template docs/api-docs-template.hbs > docs/api.md; echo ",
+    "api-docs": "./node_modules/jsdoc-to-markdown/bin/cli.js src/index.js --heading-depth 1 > docs/api.md; echo ",
     "lint": "npm run lint:src && npm run lint:test",
     "lint:src": "eslint src",
     "lint:src:fix": "eslint src --fix",
@@ -25,6 +27,7 @@
     "chai": "^4.1.2",
     "eslint": "^4.7.2",
     "eslint-config-space-single": "^0.2.0",
+    "jsdoc-to-markdown": "^3.0.0",
     "mocha": "^3.5.3"
   },
   "engines": {
