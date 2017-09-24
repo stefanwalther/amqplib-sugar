@@ -1,4 +1,4 @@
-# Classes
+## Classes
 
 <dl>
 <dt><a href="#AmqpSugarLib">AmqpSugarLib</a></dt>
@@ -6,7 +6,7 @@
 </dd>
 </dl>
 
-# Typedefs
+## Typedefs
 
 <dl>
 <dt><a href="#rabbitConnectionDef">rabbitConnectionDef</a> : <code>string</code></dt>
@@ -19,7 +19,7 @@
 
 <a name="AmqpSugarLib"></a>
 
-# AmqpSugarLib
+## AmqpSugarLib
 Sugar methods to work with amqplib.
 
 **Kind**: global class  
@@ -31,7 +31,7 @@ Sugar methods to work with amqplib.
 
 <a name="AmqpSugarLib.publishMessage"></a>
 
-## AmqpSugarLib.publishMessage(opts) ⇒ <code>Promise</code>
+### AmqpSugarLib.publishMessage(opts) ⇒ <code>Promise</code>
 Post a message to RabbitMq.
 
 **Kind**: static method of [<code>AmqpSugarLib</code>](#AmqpSugarLib)  
@@ -49,7 +49,7 @@ Post a message to RabbitMq.
 
 <a name="AmqpSugarLib.subscribeMessage"></a>
 
-## AmqpSugarLib.subscribeMessage(opts)
+### AmqpSugarLib.subscribeMessage(opts)
 Subscribe to a message.
 
 **Kind**: static method of [<code>AmqpSugarLib</code>](#AmqpSugarLib)  
@@ -60,7 +60,7 @@ Subscribe to a message.
 
 <a name="AmqpSugarLib.connect"></a>
 
-## AmqpSugarLib.connect() ⇒ <code>Promise</code>
+### AmqpSugarLib.connect() ⇒ <code>Promise</code>
 Connect to RabbitMQ.
 
 Very similar to amqp.connect, but with the big difference, that if the connection
@@ -76,13 +76,13 @@ fails, the operation will retry as defined in opts.retry_behavior
 
 <a name="rabbitConnectionDef"></a>
 
-# rabbitConnectionDef : <code>string</code>
+## rabbitConnectionDef : <code>string</code>
 RabbitMQ Server definition.
 
 **Kind**: global typedef  
 <a name="retryBehavior"></a>
 
-# retryBehavior : <code>object</code>
+## retryBehavior : <code>object</code>
 Retry behavior in case RabbitMQ is not available.
 
 **Kind**: global typedef  
