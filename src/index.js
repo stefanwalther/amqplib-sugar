@@ -41,7 +41,7 @@ class AmqpSugarLib {
    * @param {string} opts.exchange.type - 'topic', 'direct'
    * @param {string} opts.exchange.name - Name of the exchange.
    * @param {string} opts.key - Key to publish the message.
-   * @param {object} opts.message - The message to post.
+   * @param {object} opts.payload - The message to post.
    * @param {Object} opts.options - Options to publish.
    * @param {string} opts.correlationId - RabbitMQ's correlationId.
    * @param {retryBehavior} opts.retry_behavior - Retry behavior.
@@ -54,8 +54,8 @@ class AmqpSugarLib {
         conn.createChannel()
           .then(ch => {
             ch.assertExchange(opts.exchange.name, opts.exchange.type, {durable: true});
-            ch.publish(opts.exchange.name, opts.key, encode(opts.message), opts.options);
-            logger.verbose(` [x] Sent ${opts.key}: ${JSON.stringify(opts.message, null)}`);
+            ch.publish(opts.exchange.name, opts.key, encode(opts.payload), opts.options);
+            logger.verbose(` [x] Sent ${opts.key}: ${JSON.stringify(opts.payload, null)}`);
 
             // Todo: Not clear, why we need a setTimeout here ...
             setTimeout(() => {
