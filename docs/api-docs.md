@@ -26,7 +26,6 @@ Sugar methods to work with amqplib.
 
 * [AmqpSugarLib](#AmqpSugarLib)
     * [.publishMessage(opts)](#AmqpSugarLib.publishMessage) ⇒ <code>Promise</code>
-    * [.subscribeMessage(opts)](#AmqpSugarLib.subscribeMessage)
     * [.connect()](#AmqpSugarLib.connect) ⇒ <code>Promise</code>
 
 <a name="AmqpSugarLib.publishMessage"></a>
@@ -45,18 +44,9 @@ Post a message to RabbitMq.
 | opts.exchange.name | <code>string</code> | Name of the exchange. |
 | opts.key | <code>string</code> | Key to publish the message. |
 | opts.message | <code>object</code> | The message to post. |
+| opts.options | <code>Object</code> | Options to publish. |
+| opts.correlationId | <code>string</code> | RabbitMQ's correlationId. |
 | opts.retry_behavior | [<code>retryBehavior</code>](#retryBehavior) | Retry behavior. |
-
-<a name="AmqpSugarLib.subscribeMessage"></a>
-
-### AmqpSugarLib.subscribeMessage(opts)
-Subscribe to a message.
-
-**Kind**: static method of [<code>AmqpSugarLib</code>](#AmqpSugarLib)  
-
-| Param |
-| --- |
-| opts | 
 
 <a name="AmqpSugarLib.connect"></a>
 
