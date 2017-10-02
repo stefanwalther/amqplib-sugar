@@ -42,6 +42,8 @@ class AmqpSugarLib {
    * @param {string} opts.exchange.name - Name of the exchange.
    * @param {string} opts.key - Key to publish the message.
    * @param {object} opts.message - The message to post.
+   * @param {Object} opts.options - Options to publish.
+   * @param {string} opts.correlationId - RabbitMQ's correlationId.
    * @param {retryBehavior} opts.retry_behavior - Retry behavior.
    *
    * @returns {Promise}
@@ -52,7 +54,7 @@ class AmqpSugarLib {
         conn.createChannel()
           .then(ch => {
             ch.assertExchange(opts.exchange.name, opts.exchange.type, {durable: true});
-            ch.publish(opts.exchange.name, opts.key, encode(opts.message));
+            ch.publish(opts.exchange.name, opts.key, encode(opts.message), opts.options);
             logger.verbose(` [x] Sent ${opts.key}: ${JSON.stringify(opts.message, null)}`);
 
             // Todo: Not clear, why we need a setTimeout here ...
@@ -69,9 +71,9 @@ class AmqpSugarLib {
    *
    * @param opts
    */
-  static subscribeMessage(opts) {
-
-  }
+  // static subscribeMessage(opts) {
+  //
+  // }
 
   /**
    * Connect to RabbitMQ.
@@ -90,7 +92,7 @@ class AmqpSugarLib {
 
       opts.retry_behavior.attempts = number;
       if (number >= 2) {
-        logger.verbose(`Trying to (re)connect to RabbitMq, attempt number ${number-1}`);
+        logger.verbose(`Trying to (re)connect to RabbitMq, attempt number ${number - 1}`);
       }
 
       return amqp.connect(opts.server)
