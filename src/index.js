@@ -1,7 +1,8 @@
 const amqp = require('amqplib');
 const logger = require('winster').instance();
-// Todo: Need to be removed from scheduler-service as soon as migrated to amqplib-sugar
 const promiseRetry = require('promise-retry');
+const _ = require('lodash');
+const defaultConfigs = require('./config/default-configs');
 
 function encode(doc) {
   return new Buffer(JSON.stringify(doc));
@@ -75,6 +76,13 @@ class AmqpSugarLib {
   //
   // }
 
+
+  static _fixOptions(opts) {
+    opts = _.defaults(opts, {retry_behavior: {}});
+    opts = _.defaults(opts.retry_behavior, defaultConfigs.retry_behavior);
+    return opts;
+  }
+
   /**
    * Connect to RabbitMQ.
    *
@@ -87,6 +95,8 @@ class AmqpSugarLib {
    * @return {Promise} - Returns the promise as defined for amqplib.connect
    */
   static connect(opts) {
+
+    opts = AmqpSugarLib._fixOptions(opts);
 
     return promiseRetry((retry, number) => {
 
