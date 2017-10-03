@@ -26,6 +26,7 @@ Sugar methods to work with amqplib.
 
 * [AmqpSugarLib](#AmqpSugarLib)
     * [.publishMessage(opts)](#AmqpSugarLib.publishMessage) ⇒ <code>Promise</code>
+    * [._fixOptions(opts)](#AmqpSugarLib._fixOptions)
     * [.connect()](#AmqpSugarLib.connect) ⇒ <code>Promise</code>
 
 <a name="AmqpSugarLib.publishMessage"></a>
@@ -38,15 +39,26 @@ Post a message to RabbitMq.
 | Param | Type | Description |
 | --- | --- | --- |
 | opts | <code>object</code> | Configuration to use to publish a message. |
-| opts.server | <code>object</code> | RabbitMQ server. If a string is passed, it's just the URI. |
+| opts.server | <code>string</code> | RabbitMQ server. If a string is passed, it's just the URI. |
 | opts.exchange | <code>object</code> | Information about the exchange. |
 | opts.exchange.type | <code>string</code> | 'topic', 'direct' |
 | opts.exchange.name | <code>string</code> | Name of the exchange. |
 | opts.key | <code>string</code> | Key to publish the message. |
-| opts.message | <code>object</code> | The message to post. |
+| opts.payload | <code>object</code> | The message to post. |
 | opts.options | <code>Object</code> | Options to publish. |
-| opts.correlationId | <code>string</code> | RabbitMQ's correlationId. |
-| opts.retry_behavior | [<code>retryBehavior</code>](#retryBehavior) | Retry behavior. |
+| [opts.correlationId] | <code>string</code> | RabbitMQ's correlationId. |
+| [opts.retry_behavior] | [<code>retryBehavior</code>](#retryBehavior) | Retry behavior. |
+
+<a name="AmqpSugarLib._fixOptions"></a>
+
+### AmqpSugarLib._fixOptions(opts)
+Subscribe to a message.
+
+**Kind**: static method of [<code>AmqpSugarLib</code>](#AmqpSugarLib)  
+
+| Param |
+| --- |
+| opts | 
 
 <a name="AmqpSugarLib.connect"></a>
 

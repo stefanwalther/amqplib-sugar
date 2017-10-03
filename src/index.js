@@ -37,15 +37,15 @@ class AmqpSugarLib {
    * Post a message to RabbitMq.
    *
    * @param {object} opts - Configuration to use to publish a message.
-   * @param {object} opts.server - RabbitMQ server. If a string is passed, it's just the URI.
+   * @param {string} opts.server - RabbitMQ server. If a string is passed, it's just the URI.
    * @param {object} opts.exchange - Information about the exchange.
    * @param {string} opts.exchange.type - 'topic', 'direct'
    * @param {string} opts.exchange.name - Name of the exchange.
    * @param {string} opts.key - Key to publish the message.
    * @param {object} opts.payload - The message to post.
    * @param {Object} opts.options - Options to publish.
-   * @param {string} opts.correlationId - RabbitMQ's correlationId.
-   * @param {retryBehavior} opts.retry_behavior - Retry behavior.
+   * @param {string} [opts.correlationId] - RabbitMQ's correlationId.
+   * @param {retryBehavior} [opts.retry_behavior] - Retry behavior.
    *
    * @returns {Promise}
    */
