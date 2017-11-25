@@ -15,10 +15,13 @@
     "lint:test": "eslint test",
     "lint:test:fix": "eslint test --fix",
     "test": "npm run test:unit",
-    "test:unit": "npm run lint:test && mocha './test/unit/**/*.spec.js' --require './test/mocha.conf.js'"
+    "test:unit": "npm run lint:test && mocha './test/unit/**/*.spec.js' --require './test/mocha.conf.js'",
+    "dc-up:deps": "docker-compose --f=./docker-compose.deps.yml up",
+    "dc-down:deps": "docker-compose --f=./docker-compose.deps.yml down"
   },
   "dependencies": {
     "amqplib": "^0.5.1",
+    "joi": "^11.1.1",
     "lodash": "^4.17.4",
     "promise-retry": "^1.1.1",
     "sammler-nodelib-logger": "sammler/sammler-nodelib-logger"
