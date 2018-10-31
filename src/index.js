@@ -26,7 +26,11 @@ class AmqpSugarLib {
   /**
    * RabbitMQ Server definition.
    *
-   * @typedef {string} rabbitConnectionDef - Connection string of the server, e.g. `amqp://guest:guest@localhost:5672`.
+   * @typedef {string} connectionDef - Connection string of the server, e.g. `amqp://guest:guest@localhost:5672`.
+   *
+   * 
+   *
+   *
    */
 
 
@@ -157,10 +161,10 @@ class AmqpSugarLib {
   /**
    * Connect to RabbitMQ.
    *
-   * Very similar to amqp.connect, but with the big difference, that if the connection
+   * Very similar to [amqp.connect](http://www.squaremobius.net/amqp.node/channel_api.html#connect), but with the big difference, that if the connection
    * fails, the operation will retry as defined in {@link retry_behavior}
    *
-   * @param {rabbitConnectionDef} opts.server - Connection information for the server.
+   * @param {connectionDef} opts.server - Connection information for the server.
    * @param {retry_behavior} opts.retry_behavior - Retry behavior for establishing the connection.
    *
    * @return {Promise} - Returns the promise as defined for amqplib.connect
