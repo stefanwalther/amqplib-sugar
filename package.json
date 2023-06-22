@@ -18,7 +18,7 @@
     "test:unit": "npm run lint:test && mocha './test/unit/**/*.spec.js' --require './test/mocha.conf.js'"
   },
   "dependencies": {
-    "amqplib": "^0.5.1",
+    "amqplib": "^0.10.0",
     "promise-retry": "^1.1.1",
     "sammler-nodelib-logger": "sammler/sammler-nodelib-logger"
   },
