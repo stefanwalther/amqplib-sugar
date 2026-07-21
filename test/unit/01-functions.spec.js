@@ -1,9 +1,14 @@
 /* global describe, it */
-const amqpLibSugar = require('./../../src');
+const AmqpLibSugar = require('./../../src');
 
-describe('UNIT TESTS', () => {
+describe('Unit Tests => interface', () => {
 
-  describe('amqpLibSugar => check functions', () => {
+  let amqpLibSugar = null;
+  beforeEach(() => {
+    amqpLibSugar = new AmqpLibSugar();
+  });
+
+  describe('amqpLibSugar => check private functions', () => {
     it('should contain a method connect', () => {
       expect(amqpLibSugar).to.have.a.property('connect').to.be.a('function');
     });
