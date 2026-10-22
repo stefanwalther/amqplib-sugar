@@ -7,7 +7,7 @@
   "main": "index.js",
   "repository": "git@github.com:stefanwalther/amqplib-sugar.git",
   "scripts": {
-    "docs": "npm run api-docs && docker run --rm -v ${PWD}:/opt/verb stefanwalther/verb",
+    "docs": "npm run api-docs",
     "api-docs": "docker run --rm -v ${PWD}:/opt/jsdoc2md stefanwalther/jsdoc2md ./src/index.js > ./docs/api-docs.md",
     "lint": "npm run lint:src && npm run lint:test",
     "lint:src": "eslint src",
@@ -35,27 +35,6 @@
   },
   "engines": {
     "node": ">=8.4.0"
-  },
-  "verb": {
-    "run": true,
-    "toc": false,
-    "layout": "empty",
-    "tasks": [
-      "readme"
-    ],
-    "plugins": [
-      "gulp-format-md"
-    ],
-    "related": {
-      "list": []
-    },
-    "lint": {
-      "reflinks": true
-    },
-    "reflinks": [
-      "verb",
-      "verb-readme-generator"
-    ]
   },
   "winster": {
     "configFile": "./src/config/winster-config.js"
