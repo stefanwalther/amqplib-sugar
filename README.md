@@ -18,7 +18,7 @@ See [API docs](./docs/api-docs.md)
 ### Updating docs
 
 ```sh
-$ make gen-readme
+$ npm run api-docs
 ```
 
 ## Author
