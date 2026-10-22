@@ -4,11 +4,6 @@
 
 ---
 
-> This is work in progress, just some sugar functions on top of amqplib I use in some of my projects.
-> That's it, stay tuned ...
-
----
-
 ## API
 
 See [API docs](./docs/api-docs.md)
